@@ -11,12 +11,14 @@ pool:
 strategy:
   matrix:
     Python310:
-      python.version: '3.10'
-    Python311:
       python.version: '3.11'
+    Python311:
+      python.version: '3.12'
 
 steps:
 - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(python.version)'
     versionSpec: '$(python.version)'
     displayName: 'Use Python $(python.version)'
 
