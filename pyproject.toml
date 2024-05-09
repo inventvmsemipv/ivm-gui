@@ -4,9 +4,11 @@ version = "0.1.0"
 description = ""
 authors = ["Giuseppe Alfieri <galfieri@inventvm.com>"]
 readme = "README.md"
+packages = [{include = "ivm-gui"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pyqt5 = "=5.15.2"
 
 
 [build-system]
