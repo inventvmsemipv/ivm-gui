@@ -8,7 +8,8 @@ packages = [{include = "ivm-gui"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pyqt5 = "=5.15.10"
+pyqt5 = [ { version = "=5.15.10", markers = "sys_platform == 'windows'" },
+      { version = "=5.15.2", markers = "sys_platform == 'linux'" } ]
 
 [tool.poetry-pyinstaller-plugin.scripts]
 ivm-gui = { source = "ivm-gui/__main__.py", type = "onefile", bundle = true  }
