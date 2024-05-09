@@ -8,25 +8,26 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+
 strategy:
   matrix:
-    Python310:
-      python.version: '3.11'
     Python311:
+      python.version: '3.11'
+    Python312:
       python.version: '3.12'
 
 steps:
-- task: UsePythonVersion@0
+  - task: UsePythonVersion@0
     inputs:
       versionSpec: '$(python.version)'
     displayName: 'Use Python $(python.version)'
 
-- script: |
-    python -m pip install --upgrade pipx
-    pipx install poetry
-  displayName: 'Install poetry'
+  - script: |
+      python -m pip install --upgrade pipx
+      pipx install poetry
+    displayName: 'Install poetry'
 
-- script: |
-    poetry install
-    poetry build
-  displayName: 'build'
+  - script: |
+      poetry install
+      poetry build
+    displayName: 'build'
