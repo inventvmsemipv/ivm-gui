@@ -7,8 +7,8 @@ readme = "README.md"
 packages = [{include = "ivm-gui"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-pyqt5 = "=5.15.2"
+python = "^3.11"
+pyqt5 = "=5.15.10"
 
 [tool.poetry-pyinstaller-plugin.scripts]
 ivm-gui = { source = "ivm-gui/__main__.py", type = "onefile", bundle = true  }
