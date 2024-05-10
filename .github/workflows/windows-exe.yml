@@ -4,14 +4,15 @@
 name: Windows exe
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  workflow_call:
+    inputs:
+      binary-artifact-name:
+        required: true
+        type: string
+
 
 jobs:
   build:
-
     runs-on: windows-latest
     strategy:
       fail-fast: false
@@ -19,17 +20,22 @@ jobs:
         python-version: ["3.11"]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: build package
-      run: |
-        python -m pip install --upgrade pipx
-        pipx install poetry==1.8.2
-        poetry update
-        poetry install
-        poetry self add poetry-pyinstaller-plugin
-        poetry build
-    
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+           python-version: ${{ matrix.python-version }}
+      - name: build package
+        run: |
+          python -m pip install --upgrade pipx
+          pipx install poetry==1.8.2
+          poetry self add poetry-pyinstaller-plugin
+          poetry env use python
+          poetry update
+          poetry build
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.binary-artifact-name }}
+          path: D:\a\ivm-test-gui\ivm-test-gui\dist\pyinstaller\win_amd64\ivm-gui.exe
