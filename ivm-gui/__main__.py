@@ -1,3 +1,4 @@
+import PyQt5
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 
 # Only needed for access to command line arguments
