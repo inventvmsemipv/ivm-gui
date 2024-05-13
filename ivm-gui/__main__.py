@@ -1,15 +1,17 @@
 import PyQt5
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
+dir(PyQt5)
+from PyQt5 import QtWidgets as qtw
+#from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
 
 # Only needed for access to command line arguments
 import sys
 
-class MainWindow(QMainWindow):
+class MainWindow(qtw.QMainWindow):
     def __init__(self):
         super().__init__()
 
         self.setWindowTitle("Test App")
-        button = QPushButton("Press Me!")
+        button = qtw.QPushButton("Press Me!")
 
         # Set the central widget of the Window.
         self.setCentralWidget(button)
@@ -18,7 +20,7 @@ class MainWindow(QMainWindow):
 # You need one (and only one) QApplication instance per application.
 # Pass in sys.argv to allow command line arguments for your app.
 # If you know you won't use command line arguments QApplication([]) works too.
-app = QApplication(sys.argv)
+app = qtw.QApplication(sys.argv)
 
 # Create a Qt widget, which will be our window.
 window = MainWindow()

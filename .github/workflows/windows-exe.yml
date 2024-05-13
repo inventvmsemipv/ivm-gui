@@ -33,9 +33,17 @@ jobs:
           poetry self add poetry-pyinstaller-plugin
           poetry env use python
           poetry update
+          poetry install
           poetry build
+          poetry env info
+      - name: Build Zipfile
+        run: |
+          dir
+          cd D:\a\ivm-test-gui\ivm-test-gui\dist\pyinstaller\win_amd64\
+          Compress-Archive -Path .\ivm-gui\ -DestinationPath .\ivm-gui.zip
+          dir
       - name: Upload binary artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.binary-artifact-name }}
-          path: D:\a\ivm-test-gui\ivm-test-gui\dist\pyinstaller\win_amd64\ivm-gui.exe
+          path: D:\a\ivm-test-gui\ivm-test-gui\dist\pyinstaller\win_amd64\ivm-gui.zip
