@@ -32,6 +32,10 @@ jobs:
           pipx install poetry==1.8.2
           poetry self add poetry-pyinstaller-plugin
           poetry env use python
+          # FIXME: THIS SHOULD NOT BE NEEDED
+          poetry run pip install pyqt5-qt5
+          # FIXME: AS ABOVE
+          poetry run pip install pyqt5
           poetry update
           poetry install
           poetry build
